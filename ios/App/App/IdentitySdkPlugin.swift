@@ -80,6 +80,13 @@ public class IdentitySdkPlugin: CAPPlugin {
         }
     }
     
+    @objc func submit_result(_ call: CAPPluginCall) {
+        DispatchQueue.main.async {
+          let instance: UIViewController = (self.bridge?.viewController!)!
+          IDentitySDKHelper().submitResult(call: call, instance: instance);
+        }
+    }
+    
     @objc func sendResponseTo(call: CAPPluginCall, result: String) {
         call.resolve([
             "result": result
