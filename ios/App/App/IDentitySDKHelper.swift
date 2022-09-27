@@ -66,5 +66,9 @@ class IDentitySDKHelper : NSObject{
   // 660 - Live Face Check
     @IBAction func startLiveFaceChecks(call: CAPPluginCall, instance: UIViewController) {
         ViewController().startLiveFaceCheck(call: call, instance: instance);
-  }
+   }
+    
+    @IBAction func submitResult(call: CAPPluginCall, instance: UIViewController) {
+        ViewController().submitResult(call: call, instance: instance);
+   }
 }
