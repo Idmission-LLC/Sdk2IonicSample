@@ -17,4 +17,5 @@ CAP_PLUGIN(IdentitySdkPlugin, "IdentitySdkPlugin",
            CAP_PLUGIN_METHOD(idm_sdk_serviceID105, CAPPluginReturnPromise);
            CAP_PLUGIN_METHOD(idm_sdk_serviceID185, CAPPluginReturnPromise);
            CAP_PLUGIN_METHOD(idm_sdk_serviceID660, CAPPluginReturnPromise);
+           CAP_PLUGIN_METHOD(submit_result, CAPPluginReturnPromise);
 )
