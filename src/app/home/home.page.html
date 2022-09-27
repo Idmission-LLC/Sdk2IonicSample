@@ -1,0 +1,66 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      Identity SDK Demo
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" >
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Identity SDK Demo</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-list lines="full">
+
+  <ion-item>
+    <ion-input type="text" clearInput placeholder="Username" [(ngModel)]="username" name="username"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-input type="password" clearInput placeholder="Password" [(ngModel)]="password" name="password"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-input type="text" clearInput placeholder="Merchant ID" [(ngModel)]="merchantID" name="merchantID"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-input type="number" clearInput placeholder="Unique Customer Number" [(ngModel)]="uniqueCustomerNumber" name="uniqueCustomerNumber"></ion-input>
+  </ion-item>
+
+  
+    <ion-button color="primary" expand="full" (click)="initialize()"
+    >Initialize SDK</ion-button>
+  
+    <ion-button color="primary" expand="full" (click)="idValidation()"
+    >ID Validation</ion-button>
+  
+    <ion-button color="primary" expand="full" (click)="idValidationAndMatchFace()"
+    >ID Validation and Match Face</ion-button>
+  
+    <ion-button color="primary" expand="full" (click)="idValidationAndcustomerEnroll()"
+    >ID Validation and Customer Enroll</ion-button>
+  
+    <ion-button color="primary" expand="full" (click)="customerEnrollBiometrics()"
+    >Customer Enroll Biometrics</ion-button>
+  
+    <ion-button color="primary" expand="full" (click)="customerVerification()"
+    >Customer Verification</ion-button>
+  
+    <ion-button color="primary" expand="full" (click)="identifyCustomer()"
+    >Identify Customer</ion-button>
+
+    <ion-button color="primary" expand="full" (click)="liveFaceCheck()"
+    >Live Face Check</ion-button>
+
+    <ion-button color="primary" expand="full" (click)="submit_result()"
+    >Submit Result</ion-button>
+
+    <ion-textarea disabled readonly placeholder=" " [(ngModel)]="result" name="result" autocomplete="on" autocorrect="on"></ion-textarea>
+
+  </ion-list>
+
+</ion-content>

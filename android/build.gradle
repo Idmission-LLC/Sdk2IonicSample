@@ -1,0 +1,52 @@
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
+
+buildscript {
+    ext {
+      kotlin_version = "1.5.31"
+      dokka_version = "1.5.0"
+    }
+    repositories {
+        google()
+        mavenCentral()
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:4.1.0'
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+        // NOTE: Do not place your application dependencies here; they belong
+        // in the individual module build.gradle files
+    }
+}
+
+apply from: "variables.gradle"
+
+rootProject.allprojects {
+  repositories {
+    google()
+    mavenCentral()
+    jcenter()
+
+    maven {
+      url "https://gitlab.idmission.com/api/v4/projects/220/packages/maven"
+      name "GitLab"
+      credentials(HttpHeaderCredentials) {
+        name = "Private-Token"
+        value = "WESesyuSD9fQeqNEyig6"
+      }
+      authentication {
+        header(HttpHeaderAuthentication)
+      }
+    }
+  }
+
+  //This replaces project.properties w.r.t. build settings
+  project.ext {
+    defaultBuildToolsVersion="30.0.3" //String
+    defaultMinSdkVersion=23 //Integer - Minimum requirement is Android 4.4
+    defaultTargetSdkVersion=32 //Integer - We ALWAYS target the latest by default
+    defaultCompileSdkVersion=32 //Integer - We ALWAYS compile with the latest by default
+  }
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}

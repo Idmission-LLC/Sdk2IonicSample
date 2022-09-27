@@ -1,0 +1,7 @@
+{
+  "name": "ionic-angular-capacitor-identity-sdk",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
