@@ -223,7 +223,8 @@ class ViewController: UIViewController {
         }
     }
 
-    func submitResult(instance: UIViewController) {
+    func submitResult(call: CAPPluginCall, instance: UIViewController) {
+      self.call = call
       submit()
     }
     
