@@ -54,15 +54,84 @@ public class CallPluginActivity extends Activity {
           Parcelable[] processedCaptures = data.getExtras().getParcelableArray(IdMissionCaptureLauncher.EXTRA_PROCESSED_CAPTURES);
 
           JSONObject jo = new JSONObject();
-          jo.put("Image1", processedCaptures[0].toString());
-          if(processedCaptures.length>1){
-            jo.put("Image2", processedCaptures[1].toString());
-          }
-          if(processedCaptures.length>2){
-            jo.put("Image3", processedCaptures[2].toString());
-          }
-          if(processedCaptures.length>3){
-            jo.put("Image4", processedCaptures[3].toString());
+
+          for (Parcelable pc : processedCaptures)
+          {
+            if (pc instanceof ProcessedCapture.DocumentDetectionResult.RealDocument) {
+              try {
+                ProcessedCapture.DocumentDetectionResult.RealDocument rd = (ProcessedCapture.DocumentDetectionResult.RealDocument) pc;
+
+                JSONObject realDocumentData = new JSONObject();
+                realDocumentData.put("barcodeMap",rd.getBarcodeMap());
+                realDocumentData.put("barcodeString",rd.getBarcodeString());
+                realDocumentData.put("mrzMap",rd.getMrzMap());
+                realDocumentData.put("confidenceScore",rd.getConfidenceScore());
+                realDocumentData.put("detectedRect",rd.getDetectedRect());
+                realDocumentData.put("faceMatch",rd.getFaceMatch());
+                realDocumentData.put("faceOnId",rd.getFaceOnId());
+                realDocumentData.put("file",rd.getFile());
+                realDocumentData.put("mrzString",rd.getMrzString());
+                realDocumentData.put("ocrString",rd.getOcrString());
+                realDocumentData.put("operation",rd.getOperation());
+                realDocumentData.put("realnessScore",rd.getRealnessScore());
+                realDocumentData.put("timeDetectedAt",rd.getTimeDetectedAt());
+                realDocumentData.put("timeFinishedAt",rd.getTimeFinishedAt());
+                realDocumentData.put("timeStartedAt",rd.getTimeStartedAt());
+                realDocumentData.put("timeWithinBoundsAt",rd.getTimeWithinBoundsAt());
+                realDocumentData.put("modelName",rd.getModelName());
+
+                jo.put("realDocument",realDocumentData);
+              }catch(Exception e){}
+            }else if (pc instanceof ProcessedCapture.DocumentDetectionResult.SpoofDocument) {
+              try {
+                ProcessedCapture.DocumentDetectionResult.SpoofDocument sd = (ProcessedCapture.DocumentDetectionResult.SpoofDocument) pc;
+
+                JSONObject spoofDocumentData = new JSONObject();
+                spoofDocumentData.put("confidenceScore",sd.getConfidenceScore());
+                spoofDocumentData.put("detectedRect",sd.getDetectedRect());
+                spoofDocumentData.put("operation",sd.getOperation());
+                spoofDocumentData.put("realnessScore",sd.getRealnessScore());
+                spoofDocumentData.put("timeDetectedAt",sd.getTimeDetectedAt());
+                spoofDocumentData.put("timeFinishedAt",sd.getTimeFinishedAt());
+                spoofDocumentData.put("timeStartedAt",sd.getTimeStartedAt());
+                spoofDocumentData.put("timeWithinBoundsAt",sd.getTimeWithinBoundsAt());
+                spoofDocumentData.put("modelName",sd.getModelName());
+
+                jo.put("spoofDocument",spoofDocumentData);
+              }catch(Exception e){}
+            }else if (pc instanceof ProcessedCapture.LiveFaceDetectionResult.RealFace) {
+              try {
+                ProcessedCapture.LiveFaceDetectionResult.RealFace rf = (ProcessedCapture.LiveFaceDetectionResult.RealFace) pc;
+
+                JSONObject realFaceData = new JSONObject();
+                realFaceData.put("detectedRect",rf.getDetectedRect());
+                realFaceData.put("operation",rf.getOperation());
+                realFaceData.put("timeDetectedAt",rf.getTimeDetectedAt());
+                realFaceData.put("timeFinishedAt",rf.getTimeFinishedAt());
+                realFaceData.put("timeStartedAt",rf.getTimeStartedAt());
+                realFaceData.put("timeWithinBoundsAt",rf.getTimeWithinBoundsAt());
+                realFaceData.put("faceMatch",rf.getFaceMatch());
+                realFaceData.put("file",rf.getFile());
+                realFaceData.put("livenessScore",rf.getLivenessScore());
+
+                jo.put("realFace",realFaceData);
+              }catch(Exception e){}
+            }else if (pc instanceof ProcessedCapture.LiveFaceDetectionResult.SpoofFace) {
+              try {
+                ProcessedCapture.LiveFaceDetectionResult.SpoofFace sf = (ProcessedCapture.LiveFaceDetectionResult.SpoofFace) pc;
+
+                JSONObject spoofFaceData = new JSONObject();
+                spoofFaceData.put("detectedRect",sf.getDetectedRect());
+                spoofFaceData.put("operation",sf.getOperation());
+                spoofFaceData.put("timeDetectedAt",sf.getTimeDetectedAt());
+                spoofFaceData.put("timeFinishedAt",sf.getTimeFinishedAt());
+                spoofFaceData.put("timeStartedAt",sf.getTimeStartedAt());
+                spoofFaceData.put("timeWithinBoundsAt",sf.getTimeWithinBoundsAt());
+                spoofFaceData.put("livenessScore",sf.getLivenessScore());
+
+                jo.put("spoofFace",spoofFaceData);
+              }catch(Exception e){}
+            }
           }
 
           result = jo.toString();
