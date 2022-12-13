@@ -48,8 +48,8 @@ public class IdentitySdkPlugin extends Plugin {
         if(!StringUtils.isEmpty(call.getString("password"))){
             password = call.getString("password").toString();
         }
-        if(null!=call.getInt("merchantID")){
-            merchantID = (long)call.getInt("merchantID");
+        if(!StringUtils.isEmpty(call.getString("merchantID"))){
+            merchantID = Long.parseLong(call.getString("merchantID"));
         }
 
       new BackgroundTask(call).execute();
